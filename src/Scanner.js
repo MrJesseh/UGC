@@ -55,7 +55,7 @@ class Scanner {
 
                 // Check to see if it is possibly a limited
                 for(let j = 0; j < keywords.length; j++){
-                    if(desc.includes(keywords[j]) || name.includes(keywords[j])){
+                    if(desc.includes(keywords[j]) || name.includes(keywords[j]) || desc.includes(/\d+\/\d+/) || name.includes(/\d+\/\d+/)){
                         await webhook.sendPossibleLimitedAlert(name, desc, id, price, forSale, created, creator);
                         break;
                     }
