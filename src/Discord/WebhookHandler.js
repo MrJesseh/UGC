@@ -46,7 +46,7 @@ module.exports = {
         
     },
 
-    async sendTrackerAlert(itemName, itemDescription, assetId, price, forSale, created){
+    async sendTrackerAlert(itemName, itemDescription, assetId, price, forSale){
         
         try{
             let itemImageUrl = await getItemThumbnail(assetId);
@@ -68,8 +68,6 @@ module.exports = {
             }else if(forSale == false){
                 itemName = `[OFFSALE] ${itemName}`;
             }
-
-            let createdDate = moment(created).unix();
             
             let embed = new EmbedBuilder()
                 .setTitle(`${itemName}`)
@@ -78,7 +76,6 @@ module.exports = {
                 .addFields(
                     {name: "For sale?", value: `${forSale}`, inline: true},
                     {name: "Price", value: `${price}`, inline: true},
-                    {name: "Uploaded", value: `<t:${createdDate}:f>`}
                 )
                 .setDescription(`${itemDescription}`)
                 .setThumbnail(`${itemImageUrl}`)

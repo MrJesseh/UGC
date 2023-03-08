@@ -59,7 +59,8 @@ class Items {
         // Create the new data.
         try{
             await new tracked({
-                assetId: item.assetId,
+                id: item.id,
+                itemType: item.itemType,
                 forSale: item.forSale
             }).save();
         }catch(error){
@@ -69,9 +70,9 @@ class Items {
     }
 
     // Update tracked item.
-    async updateTrackedItemForSale(assetId, forSale){
+    async updateTrackedItemForSale(id, forSale){
         try{
-            await tracked.updateOne({assetId: assetId}, {
+            await tracked.updateOne({id: id}, {
                 forSale: forSale
             });
         }catch(error){
@@ -114,6 +115,23 @@ class Items {
         }else{
             return data;
         }
+    }
+
+    async getTrackedItemsForBulkInfo(){
+         // Get data.
+         let data;
+         try{
+             data = await tracked.find({}, {_id: 0, forSale: 0, __v: 0});
+         }catch(error){
+             return false;
+         }
+ 
+         // Verify existence of data.
+         if(data == null || data == undefined){
+             return false;
+         }else{
+             return data;
+         }
     }
 
 }

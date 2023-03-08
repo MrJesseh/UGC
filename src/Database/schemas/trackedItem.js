@@ -11,7 +11,8 @@ Collection: tracked-items
 */
 
 const TrackedItem = new mongoose.Schema({
-    assetId: Number,
+    id: Number,
+    itemType: String,
     forSale: Boolean
 });
 
