@@ -22,7 +22,7 @@ class Scanner {
     }
 
     async processItems(items){
-        if(items == false){return;}
+        if(items == false || items == undefined){return;}
         for(var i = 0; i < items.length; i++){
             if(await db.getScannedItem(items[i].id) != false){
             }else{
@@ -31,7 +31,7 @@ class Scanner {
                     {
                     assetId: items[i].id,
                     dateScanned: new Date()
-                }
+                    }
                 );
 
                 // Get the product info for the item.
