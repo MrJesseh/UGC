@@ -1,4 +1,3 @@
-const getProductInfo = require('./Roblox/getProductInfo');
 const getBulkProductInfo = require('./Roblox/getBulkProductInfo');
 const webhook = require('./Discord/WebhookHandler');
 const db = require('./Database/Items');

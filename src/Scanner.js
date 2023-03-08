@@ -1,10 +1,9 @@
 const getAllRecentUGC = require('./Roblox/getAllRecentUGC');
-const getBulkProductInfo = require('./Roblox/getBulkProductInfo');
-const getGroupStore = require('./Roblox/getGroupStore');
-const getGroupStoreTest = require('./Roblox/getGroupStoreTest');
 const getProductInfo = require('./Roblox/getProductInfo');
 const webhook = require('./Discord/WebhookHandler');
 const db = require('./Database/Items');
+const notableIds = require('./config.json').notableIds;
+const keywords = require('./config.json').limitedKeyWords;
 
 
 
@@ -46,7 +45,20 @@ class Scanner {
 
 
                 // Emit event for webhook.
-                await webhook.sendNewItemAlert(name, desc, id, price, forSale, created, creator); 
+                await webhook.sendNewItemAlert(name, desc, id, price, forSale, created, creator);
+                
+                // Check to see if it is a notable item.
+                if(notableIds.includes(productInfo.Creator.CreatorTargetId.toString())){
+                    await webhook.sendNotableItemAlert(name, desc, id, price, forSale, created, creator);
+                }
+
+                // Check to see if it is possibly a limited
+                for(let j = 0; j < keywords.length; j++){
+                    if(desc.includes(keywords[j]) || name.includes(keywords[j])){
+                        await webhook.sendPossibleLimitedAlert(name, desc, id, price, forSale, created, creator);
+                        break;
+                    }
+                }
             }
         }
     }
