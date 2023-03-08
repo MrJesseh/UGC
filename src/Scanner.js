@@ -22,6 +22,7 @@ class Scanner {
     }
 
     async processItems(items){
+        if(items == false){return;}
         for(var i = 0; i < items.length; i++){
             if(await db.getScannedItem(items[i].id) != false){
             }else{
