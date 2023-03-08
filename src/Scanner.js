@@ -14,7 +14,7 @@ class Scanner {
     async initRequests(){
         console.log("\x1b[32m", "[✅] Initialized Scanner!", '\x1b[0m');
         const self = this;
-        setInterval(this.scanner, 60000, self);
+        setInterval(this.scanner, 120000, self);
     }
 
     async scanner(self){
