@@ -8,7 +8,7 @@ const OnSaleWebhook = new WebhookClient({id: config.onSaleWebook.id, token: conf
 
 module.exports = {
 
-    async sendNewItemAlert(itemName, itemDescription, assetId, price, forSale, created){
+    async sendNewItemAlert(itemName, itemDescription, assetId, price, forSale, created, creator){
         try{
             let itemImageUrl = await getItemThumbnail(assetId);
 
@@ -33,6 +33,7 @@ module.exports = {
                 .addFields(
                     {name: "For sale?", value: `${forSale}`, inline: true},
                     {name: "Price", value: `${price}`, inline: true},
+                    {name: "Creator", value: `${creator}`, inline: true},
                     {name: "Uploaded", value: `<t:${createdDate}:f>`}
                 )
                 .setDescription(`${itemDescription}`)

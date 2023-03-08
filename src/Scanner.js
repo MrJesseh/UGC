@@ -42,9 +42,11 @@ class Scanner {
                 let price = productInfo.PriceInRobux;
                 let forSale = productInfo.IsForSale;
                 let created = productInfo.Created;
+                let creator = productInfo.Creator.Name;
+
 
                 // Emit event for webhook.
-                await webhook.sendNewItemAlert(name, desc, id, price, forSale, created); 
+                await webhook.sendNewItemAlert(name, desc, id, price, forSale, created, creator); 
             }
         }
     }
