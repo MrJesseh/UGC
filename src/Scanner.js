@@ -54,8 +54,9 @@ class Scanner {
                 }
 
                 // Check to see if it is possibly a limited
+                let regex = /\d+\/\d+/;
                 for(let j = 0; j < keywords.length; j++){
-                    if(desc.includes(keywords[j]) || name.includes(keywords[j]) || desc.includes(/\d+\/\d+/) || name.includes(/\d+\/\d+/)){
+                    if(desc.includes(keywords[j]) || name.includes(keywords[j]) || regex.test(desc) || regex.test(name)){
                         await webhook.sendPossibleLimitedAlert(name, desc, id, price, forSale, created, creator);
                         break;
                     }
