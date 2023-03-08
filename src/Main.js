@@ -26,7 +26,7 @@ async function Main(){
         mongoose.connection.once('open', () => {
             console.log("\x1b[32m", "[✅] Connected to Database!", '\x1b[0m');
             Scanner.initRequests();
-            Tracker.initRequests();
+            //Tracker.initRequests();
         });
     }else{
         mongoose.connect(process.env.DB_Connection_String);
