@@ -8,7 +8,7 @@ class Tracker {
     async initRequests(){
         console.log("\x1b[32m", "[✅] Initialized Tracker!", '\x1b[0m');
         const self = this;
-        setInterval(this.tracker, 5000, self);
+        setInterval(this.tracker, 3000, self);
     }
 
     async tracker(self){
