@@ -10,7 +10,6 @@ module.exports = async function getToken(){
         'x-csrf-token': 'o8UXxlAl3Afx'
     };
 
-    
     let response;
     try{
         response = await axios.post(`${url}`, {items: [{id: 12711749271, itemType: 'Asset'}]}, {headers: headers, withCredentials: true});

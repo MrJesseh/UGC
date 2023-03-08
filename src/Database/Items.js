@@ -46,20 +46,11 @@ class Items {
         // Create the new data.
         try{
             await new scanned({
-                itemName: item.itemName,
-                itemDescription: item.itemDescription,
                 assetId: item.assetId,
-                dateScanned: item.dateScanned,
-                creator: {
-                    type: item.creator.type,
-                    name: item.creator.name,
-                    id: item.creator.id
-                },
-                forSale: item.forSale,
-                price: item.price
+                dateScanned: item.dateScanned
             }).save();
         }catch(error){
-            return console.log(error);
+            return false;
         }
         return true;
     }
@@ -68,20 +59,23 @@ class Items {
         // Create the new data.
         try{
             await new tracked({
-                itemName: item.itemName,
-                itemDescription: item.itemDescription,
                 assetId: item.assetId,
-                dateScanned: item.dateScanned,
-                creator: {
-                    type: item.creator.type,
-                    name: item.creator.name,
-                    id: item.creator.id
-                },
-                forSale: item.forSale,
-                price: item.price
+                forSale: item.forSale
             }).save();
         }catch(error){
-            return console.log(error);
+            return false;
+        }
+        return true;
+    }
+
+    // Update tracked item.
+    async updateTrackedItemForSale(assetId, forSale){
+        try{
+            await tracked.updateOne({assetId: assetId}, {
+                forSale: forSale
+            });
+        }catch(error){
+            return false;
         }
         return true;
     }

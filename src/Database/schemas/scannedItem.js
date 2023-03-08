@@ -11,17 +11,8 @@ Collection: scanned-items
 */
 
 const ScannedItem = new mongoose.Schema({
-    itemName: String,
-    itemDescription: String,
     assetId: Number,
-    dateScanned: Date,
-    creator: {
-        type: String,
-        name: String,
-        id: Number
-    },
-    forSale: Boolean,
-    price: Number
+    dateScanned: Date
 });
 
 const scannedItem = Items.model("scanned-item", ScannedItem, "scanned-items");

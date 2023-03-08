@@ -11,7 +11,6 @@ module.exports = async function getGroupStore(groupName){
     try{
         response = await axios.get(`${url}`);
     }catch(error){
-        console.log(error);
         return false;
     }
     

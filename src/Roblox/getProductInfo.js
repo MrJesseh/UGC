@@ -8,7 +8,6 @@ module.exports = async function getProductInfo(assetId){
     try{
         response = await axios.get(`${url}`);
     }catch(error){
-        console.log(error.data);
         return false;
     }
     return response.data;

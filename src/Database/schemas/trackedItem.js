@@ -11,17 +11,8 @@ Collection: tracked-items
 */
 
 const TrackedItem = new mongoose.Schema({
-    itemName: String,
-    itemDescription: String,
     assetId: Number,
-    dateScanned: Date,
-    creator: {
-        type: String,
-        name: String,
-        id: Number
-    },
-    forSale: Boolean,
-    price: Number
+    forSale: Boolean
 });
 
 const trackedItem = Items.model("tracked-item", TrackedItem, "tracked-items");

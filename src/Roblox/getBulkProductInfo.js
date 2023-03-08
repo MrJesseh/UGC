@@ -19,7 +19,6 @@ module.exports = async function getProductInfo(assets){
     try{
         response = await axios.post(`${url}`, {items: assets}, {headers: headers, withCredentials: true});
     }catch(error){
-        console.log(error);
         return false;
     }
     return response.data;
