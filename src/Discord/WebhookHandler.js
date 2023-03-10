@@ -42,7 +42,7 @@ module.exports = {
                 .setThumbnail(`${itemImageUrl}`)
                 .setTimestamp();
 
-            return await NewItemWebhook.send({embeds: [embed]});
+            return await NewItemWebhook.send({embeds: [embed], content: "<@1083867069692522616>"});
         }catch(error){
             return;
         }
@@ -122,7 +122,7 @@ module.exports = {
                 .setThumbnail(`${itemImageUrl}`)
                 .setTimestamp();
 
-            return await NotableItemAlert.send({embeds: [embed]});
+            return await NotableItemAlert.send({embeds: [embed], content: "<@1083867118921076746>"});
         }catch(error){
             return;
         }
@@ -161,7 +161,7 @@ module.exports = {
                 .setThumbnail(`${itemImageUrl}`)
                 .setTimestamp();
 
-            return await LimitedItemAlert.send({embeds: [embed]});
+            return await LimitedItemAlert.send({embeds: [embed], content: "<@1083867165331042354>"});
         }catch(error){
             return;
         }
