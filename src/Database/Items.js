@@ -1,5 +1,6 @@
 const scanned = require('../Database/schemas/scannedItem').scannedItem;
 const tracked = require('./schemas/trackedItem').trackedItem;
+const notable = require('./schemas/notableItem').notableItem;
 
 
 class Items {
@@ -132,6 +133,68 @@ class Items {
          }else{
              return data;
          }
+    }
+
+    async getNotableTrackedItemsForBulkInfo(){
+        // Get data.
+        let data;
+        try{
+            data = await notable.find({}, {_id: 0, itemName: 0, itemDesc: 0, dateScanned: 0, creatorName: 0, createdDate: 0, __v: 0});
+        }catch(error){
+            return false;
+        }
+
+        // Verify existence of data.
+        if(data == null || data == undefined){
+            return false;
+        }else{
+            return data;
+        }
+    }
+
+    async getNotableTrackedItems(){
+        // Get data.
+        let data;
+        try{
+            data = await notable.find();
+        }catch(error){
+            return false;
+        }
+
+        // Verify existence of data.
+        if(data == null || data == undefined){
+            return false;
+        }else{
+            return data;
+        }
+    }
+
+    async addNotableItem(id, itemName, itemDesc, creatorName, createdDate){
+        // Create the new data.
+        let date = new Date();
+        try{
+            await new notable({
+                id: id,
+                itemType: "Asset",
+                itemName: itemName,
+                itemDesc: itemDesc,
+                dateScanned: date,
+                creatorName: creatorName,
+                createdDate: createdDate
+            }).save();
+        }catch(error){
+            return false;
+        }
+        return true;
+    }
+
+    async deleteNotableItem(id){
+        try{    
+            await notable.deleteOne({id: id});
+        }catch(error){
+            return false;
+        }
+        return true;
     }
 
 }

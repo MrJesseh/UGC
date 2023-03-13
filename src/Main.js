@@ -1,5 +1,6 @@
 const Scanner = require('./Scanner');
 const Tracker = require('./Tracker');
+const NotableTracker = require('./NotableTracker');
 const mongoose = require('mongoose');
 const isTestMode = true;
 const db = require('./Database/Items');
@@ -14,6 +15,7 @@ async function Main(){
             console.log("\x1b[32m", "[✅] Connected to Database!", '\x1b[0m');
             Scanner.initRequests();
             //Tracker.initRequests();
+            NotableTracker.initRequests();
         });
     }
     mongoose.Promise = global.Promise;    

@@ -22,7 +22,7 @@ class Scanner {
     }
 
     async processItems(items){
-        if(items == false || items == undefined){return;}
+        if(items == false || items == undefined){return console.log("Scanner his rate limit.");}
         for(var i = 0; i < items.length; i++){
             if(await db.getScannedItem(items[i].id) != false){
             }else{
@@ -51,6 +51,7 @@ class Scanner {
                 // Check to see if it is a notable item.
                 if(notableIds.includes(productInfo.Creator.CreatorTargetId.toString())){
                     await webhook.sendNotableItemAlert(name, desc, id, price, forSale, created, creator);
+                    await db.addNotableItem(id, name, desc, creator, created);
                 }
 
                 // Check to see if it is possibly a limited
