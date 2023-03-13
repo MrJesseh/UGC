@@ -1,6 +1,5 @@
-const { EmbedBuilder, WebhookClient } = require('discord.js');
+const { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, WebhookClient } = require('discord.js');
 const moment = require('moment');
-const getProductInfo = require('../Roblox/getProductInfo');
 const getItemThumbnail = require('../Roblox/getItemThumbnail');
 const config = require('../config.json');
 const NewItemWebhook = new WebhookClient({id: config.newItemWebhook.id, token: config.newItemWebhook.key});
@@ -42,7 +41,16 @@ module.exports = {
                 .setThumbnail(`${itemImageUrl}`)
                 .setTimestamp();
 
-            return await NewItemWebhook.send({embeds: [embed], content: "<@&1083867069692522616>"});
+            const row = new ActionRowBuilder()
+                .addComponents(
+                    new ButtonBuilder()
+                        .setStyle(ButtonStyle.Link)
+                        .setURL(`https://www.roblox.com/catalog/${assetId}/`)
+                        .setEmoji('↗️')
+                        .setLabel("Go to Item")
+                );
+
+            return await NewItemWebhook.send({embeds: [embed], components: [row], content: "<@&1083867069692522616>"});
         }catch(error){
             return;
         }
@@ -84,7 +92,16 @@ module.exports = {
                 .setThumbnail(`${itemImageUrl}`)
                 .setTimestamp();
 
-            return await OnSaleWebhook.send({embeds: [embed]});
+            const row = new ActionRowBuilder()
+            .addComponents(
+                new ButtonBuilder()
+                    .setStyle(ButtonStyle.Link)
+                    .setURL(`https://www.roblox.com/catalog/${assetId}/`)
+                    .setEmoji('↗️')
+                    .setLabel("Go to Item")
+            );
+
+            return await OnSaleWebhook.send({embeds: [embed], components: [row]});
         }catch(error){
             return;
         }  
@@ -122,7 +139,16 @@ module.exports = {
                 .setThumbnail(`${itemImageUrl}`)
                 .setTimestamp();
 
-            return await NotableItemAlert.send({embeds: [embed], content: "<@&1083867118921076746>"});
+            const row = new ActionRowBuilder()
+            .addComponents(
+                new ButtonBuilder()
+                    .setStyle(ButtonStyle.Link)
+                    .setURL(`https://www.roblox.com/catalog/${assetId}/`)
+                    .setEmoji('↗️')
+                    .setLabel("Go to Item")
+            );
+
+            return await NotableItemAlert.send({embeds: [embed], components: [row], content: "<@&1083867118921076746>"});
         }catch(error){
             return;
         }
@@ -161,7 +187,16 @@ module.exports = {
                 .setThumbnail(`${itemImageUrl}`)
                 .setTimestamp();
 
-            return await LimitedItemAlert.send({embeds: [embed], content: "<@&1083867165331042354>"});
+            const row = new ActionRowBuilder()
+            .addComponents(
+                new ButtonBuilder()
+                    .setStyle(ButtonStyle.Link)
+                    .setURL(`https://www.roblox.com/catalog/${assetId}/`)
+                    .setEmoji('↗️')
+                    .setLabel("Go to Item")
+            );
+
+            return await LimitedItemAlert.send({embeds: [embed], components: [row], content: "<@&1083867165331042354>"});
         }catch(error){
             return;
         }
