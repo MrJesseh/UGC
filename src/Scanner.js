@@ -57,7 +57,7 @@ class Scanner {
                 // Check to see if it is possibly a limited
                 let lcName = name.toLowerCase();
                 let lcDesc = desc.toLowerCase();
-                let regex = /\d+\/\d+/;
+                let regex = /\d+\s*\/\s*\d+/;
                 for(let j = 0; j < keywords.length; j++){
                     if(lcDesc.includes(keywords[j]) || lcName.includes(keywords[j]) || regex.test(desc) || regex.test(name)){
                         await webhook.sendPossibleLimitedAlert(name, desc, id, price, forSale, created, creator);
