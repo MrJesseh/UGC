@@ -13,7 +13,8 @@ Collection: tracked-items
 const TrackedItem = new mongoose.Schema({
     id: Number,
     itemType: String,
-    forSale: Boolean
+    forSale: Boolean,
+    price: Number
 });
 
 const trackedItem = Items.model("tracked-item", TrackedItem, "tracked-items");

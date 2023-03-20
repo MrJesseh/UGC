@@ -107,6 +107,50 @@ module.exports = {
         }  
     },
 
+    async sendPriceChangeAlert(itemName, change, itemDescription, assetId, fromPrice, toPrice){
+        
+        try{
+            let itemImageUrl = await getItemThumbnail(assetId);
+            //console.log(itemImageUrl);
+
+            // Handle description.
+            if(itemDescription.length == 0){
+                itemDescription = "**Description:** \nN/A";
+            }else{
+                itemDescription = `**Description:** \n${itemDescription}`;
+            }
+
+            if(itemName.length == 0){
+                itemName = "N/A";
+            }
+            
+            let embed = new EmbedBuilder()
+                .setTitle(`${change} | ${itemName}`)
+                .setColor('Yellow')
+                .setURL(`https://www.roblox.com/catalog/${assetId}/`)
+                .addFields(
+                    {name: "Original Price", value: `${fromPrice}`, inline: true},
+                    {name: "New Price", value: `${toPrice}`, inline: true},
+                )
+                .setDescription(`${itemDescription}`)
+                .setThumbnail(`${itemImageUrl}`)
+                .setTimestamp();
+
+            const row = new ActionRowBuilder()
+            .addComponents(
+                new ButtonBuilder()
+                    .setStyle(ButtonStyle.Link)
+                    .setURL(`https://www.roblox.com/catalog/${assetId}/`)
+                    .setEmoji('↗️')
+                    .setLabel("Go to Item")
+            );
+
+            return await OnSaleWebhook.send({embeds: [embed], components: [row], content: "<@&1087405640642723862>"});
+        }catch(error){
+            return;
+        }  
+    },
+
     async sendNotableItemAlert(itemName, itemDescription, assetId, price, forSale, created, creator){
         try{
             let itemImageUrl = await getItemThumbnail(assetId);

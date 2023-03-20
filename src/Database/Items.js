@@ -62,7 +62,8 @@ class Items {
             await new tracked({
                 id: item.id,
                 itemType: item.itemType,
-                forSale: item.forSale
+                forSale: item.forSale,
+                price: item.price
             }).save();
         }catch(error){
             return false;
@@ -75,6 +76,17 @@ class Items {
         try{
             await tracked.updateOne({id: id}, {
                 forSale: forSale
+            });
+        }catch(error){
+            return false;
+        }
+        return true;
+    }
+
+    async updateTrackedItemPrice(id, price){
+        try{
+            await tracked.updateOne({id: id}, {
+                price: price
             });
         }catch(error){
             return false;
@@ -123,7 +135,7 @@ class Items {
          // Get data.
          let data;
          try{
-             data = await tracked.find({}, {_id: 0, forSale: 0, __v: 0});
+             data = await tracked.find({}, {_id: 0, forSale: 0, __v: 0, price: 0});
          }catch(error){
              return false;
          }

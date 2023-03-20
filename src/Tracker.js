@@ -49,8 +49,25 @@ class Tracker {
 
                 // Send the webhook.
                 await webhook.sendTrackerAlert(name, desc, id, price, forSale); 
-            }else{
-                continue;
+            }
+
+            if(itemData[i].priceStatus == undefined){
+                if(itemData[i].price != items[i].price){
+                    let priceDiff = items[i].price - itemData[i].price;
+                    let priceChange = "";
+
+                    // Determine if the price went up or down.
+                    if(priceDiff > 0){
+                        priceDiff = Math.abs(priceDiff);
+                        priceChange = `Price Decreased by: ${priceDiff}`;
+                    }else if(priceDiff < 0){
+                        priceDiff = Math.abs(priceDiff);
+                        priceChange = `Price Increased by: ${priceDiff}`;
+                    }
+                    await db.updateTrackedItemPrice(items[i].id, Price);
+                    await webhook.sendPriceChangeAlert(itemData[i].name, priceChange, itemData[i].description, items[i].id, items[i].price, Price);
+                    continue;
+                }
             }
         }
     }

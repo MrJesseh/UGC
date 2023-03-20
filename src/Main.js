@@ -13,6 +13,16 @@ async function Main(){
         mongoose.connect(config.DB_CONNECTION_STRING);
         mongoose.connection.once('open', () => {
             console.log("\x1b[32m", "[✅] Connected to Database!", '\x1b[0m');
+            // //id: item.id,
+            // itemType: item.itemType,
+            // forSale: item.forSale
+            // let item = {
+            //     id: 184361009,
+            //     itemType: "Asset",
+            //     forSale: false,
+            //     price: 2
+            // };
+            // db.addTrackedItem(item);
             Scanner.initRequests();
             Tracker.initRequests();
             NotableTracker.initRequests();
