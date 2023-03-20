@@ -101,7 +101,7 @@ module.exports = {
                     .setLabel("Go to Item")
             );
 
-            return await OnSaleWebhook.send({embeds: [embed], components: [row]});
+            return await OnSaleWebhook.send({embeds: [embed], components: [row], content: "<@&1087405640642723862>"});
         }catch(error){
             return;
         }  

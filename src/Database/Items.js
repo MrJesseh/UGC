@@ -118,6 +118,7 @@ class Items {
         }
     }
 
+    // Returns the tracked items with only their id and itemType.
     async getTrackedItemsForBulkInfo(){
          // Get data.
          let data;
@@ -135,6 +136,7 @@ class Items {
          }
     }
 
+    // Returns notable tracked items with only their id and itemType.
     async getNotableTrackedItemsForBulkInfo(){
         // Get data.
         let data;
@@ -152,6 +154,7 @@ class Items {
         }
     }
 
+    // Returns all notable items from the DB.
     async getNotableTrackedItems(){
         // Get data.
         let data;
@@ -169,6 +172,7 @@ class Items {
         }
     }
 
+    // Creates a document for a new notable item.
     async addNotableItem(id, itemName, itemDesc, creatorName, createdDate){
         // Create the new data.
         let date = new Date();
@@ -188,6 +192,7 @@ class Items {
         return true;
     }
 
+    // Removes a document for specified notable item from the db.
     async deleteNotableItem(id){
         try{    
             await notable.deleteOne({id: id});

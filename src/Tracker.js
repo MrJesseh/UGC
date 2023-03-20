@@ -1,4 +1,5 @@
 const getBulkProductInfo = require('./Roblox/getBulkProductInfo');
+const config = require('./config.json');
 const webhook = require('./Discord/WebhookHandler');
 const db = require('./Database/Items');
 
@@ -8,7 +9,7 @@ class Tracker {
     async initRequests(){
         console.log("\x1b[32m", "[✅] Initialized Tracker!", '\x1b[0m');
         const self = this;
-        setInterval(this.tracker, 3000, self);
+        setInterval(this.tracker, config.trackerInterval, self);
     }
 
     async tracker(self){
@@ -19,6 +20,7 @@ class Tracker {
     }
 
     async processItems(items, itemData){
+        if(itemData == null || itemData == undefined){return console.log("Tracker hit rate limit");}
         for(var i = 0; i < items.length; i++){
             if(itemData == undefined){return;};
             // Get the product info for the item.

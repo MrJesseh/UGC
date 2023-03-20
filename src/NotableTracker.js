@@ -1,6 +1,7 @@
 const getBulkProductInfo = require('./Roblox/getBulkProductInfo');
 const webhook = require('./Discord/WebhookHandler');
 const db = require('./Database/Items');
+const config = require('./config.json');
 const keywords = require('./config.json').limitedKeyWords;
 
 class NotableTracker {
@@ -9,7 +10,7 @@ class NotableTracker {
     async initRequests(){
         console.log("\x1b[32m", "[✅] Initialized Notable Tracker!", '\x1b[0m');
         const self = this;
-        setInterval(this.tracker, 60000, self);
+        setInterval(this.tracker, config.notableInterval, self);
     }
 
     async tracker(self){

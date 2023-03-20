@@ -1,4 +1,5 @@
 const getAllRecentUGC = require('./Roblox/getAllRecentUGC');
+const config = require('./config.json');
 const getProductInfo = require('./Roblox/getProductInfo');
 const webhook = require('./Discord/WebhookHandler');
 const db = require('./Database/Items');
@@ -13,7 +14,7 @@ class Scanner {
     async initRequests(){
         console.log("\x1b[32m", "[✅] Initialized Scanner!", '\x1b[0m');
         const self = this;
-        setInterval(this.scanner, 120000, self);
+        setInterval(this.scanner, config.scannerInterval, self);
     }
 
     async scanner(self){
@@ -22,7 +23,7 @@ class Scanner {
     }
 
     async processItems(items){
-        if(items == false || items == undefined){return console.log("Scanner his rate limit.");}
+        if(items == false || items == undefined){return console.log("Scanner hit rate limit.");}
         for(var i = 0; i < items.length; i++){
             if(await db.getScannedItem(items[i].id) != false){
             }else{
