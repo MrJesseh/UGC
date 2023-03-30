@@ -24,7 +24,7 @@ async function Main(){
             // };
             // db.addTrackedItem(item);
             Scanner.initRequests();
-            Tracker.initRequests();
+            //Tracker.initRequests();
             NotableTracker.initRequests();
         });
     }
