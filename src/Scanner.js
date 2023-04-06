@@ -38,6 +38,7 @@ class Scanner {
                 // Get the product info for the item.
                 let productInfo = await getProductInfo(items[i].id);
                 let name = productInfo.Name;
+                let type = productInfo.ProductType;
                 let desc = productInfo.Description;
                 let id = items[i].id;
                 let price = productInfo.PriceInRobux;
@@ -56,14 +57,8 @@ class Scanner {
                 }
 
                 // Check to see if it is possibly a limited
-                let lcName = name.toLowerCase();
-                let lcDesc = desc.toLowerCase();
-                let regex = /\d+\s*\/\s*\d+/;
-                for(let j = 0; j < keywords.length; j++){
-                    if(lcDesc.includes(keywords[j]) || lcName.includes(keywords[j]) || regex.test(desc) || regex.test(name)){
-                        await webhook.sendPossibleLimitedAlert(name, desc, id, price, forSale, created, creator);
-                        break;
-                    }
+                if(type == "Collectible Item"){
+                    await webhook.sendPossibleLimitedAlert(name, desc, id, price, forSale, created, creator);
                 }
             }
         }
