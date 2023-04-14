@@ -245,5 +245,53 @@ module.exports = {
             return;
         }
         
+    },
+
+    async sendFreeLimitedItemAlert(itemName, itemDescription, assetId, price, forSale, created, creator){
+        try{
+            let itemImageUrl = await getItemThumbnail(assetId);
+
+
+            // Handle description.
+            if(itemDescription.length == 0){
+                itemDescription = "**Description:** \nN/A";
+            }else{
+                itemDescription = `**Description:** \n${itemDescription}`;
+            }
+
+            if(itemName.length == 0){
+                itemName = "N/A";
+            }
+
+            let createdDate = moment(created).unix();
+            
+            let embed = new EmbedBuilder()
+                .setTitle(`${itemName}`)
+                .setColor('Green')
+                .setURL(`https://www.roblox.com/catalog/${assetId}/`)
+                .addFields(
+                    {name: "For sale?", value: `${forSale}`, inline: true},
+                    {name: "Price", value: `${price}`, inline: true},
+                    {name: "Creator", value: `${creator}`, inline: true},
+                    {name: "Uploaded", value: `<t:${createdDate}:f>`}
+                )
+                .setDescription(`${itemDescription}`)
+                .setThumbnail(`${itemImageUrl}`)
+                .setTimestamp();
+
+            const row = new ActionRowBuilder()
+            .addComponents(
+                new ButtonBuilder()
+                    .setStyle(ButtonStyle.Link)
+                    .setURL(`https://www.roblox.com/catalog/${assetId}/`)
+                    .setEmoji('↗️')
+                    .setLabel("Go to Item")
+            );
+
+            return await OnSaleWebhook.send({embeds: [embed], components: [row], content: "<@&1087405640642723862>"});
+        }catch(error){
+            return;
+        }
+        
     }
 } 

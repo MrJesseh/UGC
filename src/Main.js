@@ -1,6 +1,7 @@
 const Scanner = require('./Scanner');
 const Tracker = require('./Tracker');
 const NotableTracker = require('./NotableTracker');
+const LimitedScanner = require('./LimitedScanner');
 const mongoose = require('mongoose');
 const isTestMode = true;
 const db = require('./Database/Items');
@@ -24,8 +25,9 @@ async function Main(){
             // };
             // db.addTrackedItem(item);
             Scanner.initRequests();
+            LimitedScanner.initRequests();
             //Tracker.initRequests();
-            NotableTracker.initRequests();
+            //NotableTracker.initRequests();
         });
     }
     mongoose.Promise = global.Promise;    

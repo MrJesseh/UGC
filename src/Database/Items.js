@@ -1,6 +1,7 @@
 const scanned = require('../Database/schemas/scannedItem').scannedItem;
 const tracked = require('./schemas/trackedItem').trackedItem;
 const notable = require('./schemas/notableItem').notableItem;
+const limited = require('./schemas/scannedLimitedItem').scannedItem;
 
 
 class Items {
@@ -23,6 +24,24 @@ class Items {
             return data;
         }
     }
+
+        // Get scanned items.
+        async getScannedLimitedItems(){
+            // Get data.
+            let data;
+            try{
+                data = await limited.find();
+            }catch(error){
+                return false;
+            }
+    
+            // Verify existence of data.
+            if(data == null || data == undefined){
+                return false;
+            }else{
+                return data;
+            }
+        }
 
     // Get tracked items.
     async getTrackedItems(){
@@ -47,6 +66,19 @@ class Items {
         // Create the new data.
         try{
             await new scanned({
+                assetId: item.assetId,
+                dateScanned: item.dateScanned
+            }).save();
+        }catch(error){
+            return false;
+        }
+        return true;
+    }
+    // Add scanned limited item.
+    async addScannedLimitedItem(item){
+        // Create the new data.
+        try{
+            await new limited({
                 assetId: item.assetId,
                 dateScanned: item.dateScanned
             }).save();
@@ -118,6 +150,24 @@ class Items {
         let data;
         try{
             data = await scanned.findOne({assetId: assetId});
+        }catch(error){
+            return false;
+        }
+
+        // Verify existence of data.
+        if(data == null || data == undefined){
+            return false;
+        }else{
+            return data;
+        }
+    }
+
+    // Get scanned item.
+    async getScannedLimitedItem(assetId){
+        // Get data.
+        let data;
+        try{
+            data = await limited.findOne({assetId: assetId});
         }catch(error){
             return false;
         }
