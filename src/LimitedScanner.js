@@ -37,7 +37,7 @@ class Scanner {
 
                 // Get the product info for the item.
                 let productInfo = await getProductInfo(items[i].id);
-                if(productInfo == null || productInfo == undefined){return console.log("Limited Scanner hit rate limit.")}
+                if(productInfo == null || productInfo == undefined || productInfo.Creator == undefined){return console.log("Limited Scanner hit rate limit.")}
                 //console.log(productInfo);
                 let name = productInfo.Name;
                 let type = productInfo.ProductType;
