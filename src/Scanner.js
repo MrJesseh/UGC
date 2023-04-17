@@ -37,6 +37,7 @@ class Scanner {
 
                 // Get the product info for the item.
                 let productInfo = await getProductInfo(items[i].id);
+                if(productInfo == null || productInfo == undefined){return console.log("Limited Scanner hit rate limit.")}
                 let name = productInfo.Name;
                 let type = productInfo.ProductType;
                 let desc = productInfo.Description;
@@ -44,7 +45,14 @@ class Scanner {
                 let price = productInfo.PriceInRobux;
                 let forSale = productInfo.IsForSale;
                 let created = productInfo.Created;
-                let creator = productInfo.Creator.Name;
+                let creator;
+                console.log(productInfo.Creator);
+                try{
+                    creator = productInfo.Creator.Name;
+                }catch(error){
+                    creator = "N/A";
+                }
+                
 
 
                 // Emit event for webhook.

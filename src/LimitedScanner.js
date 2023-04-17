@@ -12,9 +12,9 @@ class Scanner {
     constructor(){}
 
     async initRequests(){
-        console.log("\x1b[32m", "[✅] Initialized Scanner!", '\x1b[0m');
+        console.log("\x1b[32m", "[✅] Initialized Limited Scanner!", '\x1b[0m');
         const self = this;
-        setInterval(this.scanner, config.scannerInterval, self);
+        setInterval(this.scanner, config.limitedInterval, self);
     }
 
     async scanner(self){
@@ -23,7 +23,7 @@ class Scanner {
     }
 
     async processItems(items){
-        if(items == false || items == undefined){return console.log("Scanner hit rate limit.");}
+        if(items == false || items == undefined){return console.log("Limited Scanner hit rate limit.");}
         for(var i = 0; i < items.length; i++){
             if(await db.getScannedLimitedItem(items[i].id) != false){
             }else{
@@ -47,6 +47,7 @@ class Scanner {
                 let forSale = productInfo.IsForSale;
                 let created = productInfo.Created;
                 let creator;
+                console.log(productInfo.Creator);
                 try{
                     creator = productInfo.Creator.Name;
                 }catch(error){
