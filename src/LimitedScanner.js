@@ -47,7 +47,7 @@ class Scanner {
                 let forSale = productInfo.IsForSale;
                 let created = productInfo.Created;
                 let creator;
-                console.log(productInfo.Creator);
+                //console.log(productInfo.Creator);
                 try{
                     creator = productInfo.Creator.Name;
                 }catch(error){

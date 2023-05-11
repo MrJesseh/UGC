@@ -1,0 +1,82 @@
+{
+    "scannerInterval": 30000,
+    "notableInterval": 60000,
+    "trackerInterval": 7000,
+    "limitedInterval": 60000,
+    "cookie": "",
+    "newItemWebhook": {
+        "url": "",
+        "id": "",
+        "key": ""
+    },
+    "onSaleWebook": {
+        "url": "",
+        "id": "",
+        "key": ""
+    },
+    "notableWebhook": {
+        "url": "",
+        "id": "",
+        "key": ""
+    },
+    "limitedWebhook": {
+        "url": "",
+        "id": "",
+        "key": ""
+    },
+    "DB_CONNECTION_STRING": "",
+    "phones": [
+        ""
+    ],
+    "notableIds": [
+        "13015151",
+        "17006589",
+        "5602274",
+        "13022884",
+        "16872487",
+        "331",
+        "16690066",
+        "13805545",
+        "16968125",
+        "17105411",
+        "16288724",
+        "17014026",
+        "39122894",
+        "16919474",
+        "12411117",
+        "16746353",
+        "7314014",
+        "16181756",
+        "16691824",
+        "16909021",
+        "16970646",
+        "16854569",
+        "12265541",
+        "125753905",
+        "8999183",
+        "13001290",
+        "16891240",
+        "5214183",
+        "17204933",
+        "16955241"
+    ],
+    "limitedKeyWords": [
+        "hour",
+        "hours",
+        "day",
+        "days",
+        "month",
+        "months",
+        "minute",
+        "minutes",
+        "stock",
+        "slots",
+        "stocks",
+        "slot",
+        "limited",
+        "timed",
+        "time",
+        "limit",
+        "available"
+    ]
+}
